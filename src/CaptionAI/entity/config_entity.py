@@ -6,4 +6,3 @@ class DataIngestionConfig:
     root_dir: Path
     dataset_link: str
     local_data_file: Path
-    unzip_dir: Path

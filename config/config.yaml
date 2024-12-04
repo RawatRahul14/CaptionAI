@@ -4,4 +4,6 @@ data_ingestion:
   root_dir: artifacts/data_ingestion
   dataset_link: "adityajn105/flickr8k"
   local_data_file: artifacts/data_ingestion/data.zip
-  unzip_dir: artifacts/data_ingestion
+
+tokenization:
+  root_dir: 
