@@ -22,7 +22,9 @@ class DataIngestion:
                 data_path = dataset_download(self.config.dataset_link)
                 logger.info("Dataset has been downloaded successfully.")
 
-                os.rename(src=data_path, dst=self.config.local_data_file)
+                os.rename(src = data_path,
+                          dst = self.config.local_data_file)
+                
                 logger.info(f"Dataset has been moved to: {self.config.local_data_file}")
                 return  
             except requests.exceptions.Timeout:

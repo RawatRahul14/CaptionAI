@@ -1,6 +1,7 @@
 from CaptionAI.constants import *
 from CaptionAI.utils.common import read_yaml, create_directories
-from CaptionAI.entity.config_entity import (DataIngestionConfig)
+from CaptionAI.entity.config_entity import (DataIngestionConfig,
+                                            TokenizationConfig)
 
 class ConfigurationManager:
     def __init__(self,
@@ -18,8 +19,24 @@ class ConfigurationManager:
         data_ingestion_config = DataIngestionConfig(
             root_dir = config.root_dir,
             dataset_link = config.dataset_link,
-            local_data_file = config.local_data_file,
-            unzip_dir = config.unzip_dir
+            local_data_file = config.local_data_file
         )
 
         return data_ingestion_config
+    
+    def get_tokenization_config(self):
+        config = self.config.tokenization
+        create_directories([config.root_dir])
+
+        tokenization_config = TokenizationConfig(
+            root_dir = config.root_dir,
+            token_file = config.token_file,
+            caption_file = config.caption_file,
+            tokenizer_type = config.tokenizer_type,
+            unk_token = config.unk_token,
+            pad_token = config.pad_token,
+            sos_token = config.sos_token,
+            eos_token = config.eos_token
+        )
+
+        return tokenization_config

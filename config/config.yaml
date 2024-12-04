@@ -3,7 +3,14 @@ artifacts_root: artifacts
 data_ingestion:
   root_dir: artifacts/data_ingestion
   dataset_link: "adityajn105/flickr8k"
-  local_data_file: artifacts/data_ingestion/data.zip
+  local_data_file: artifacts/data_ingestion/data
 
 tokenization:
-  root_dir: 
+  root_dir: artifacts/tokenization
+  token_file: artifacts/tokenization/data
+  caption_file: artifacts/data_ingestion/data/captions.txt
+  tokenizer_type: "basic_english"
+  unk_token: "<unk>"
+  pad_token: "<pad>"
+  sos_token: "<sos>"
+  eos_token: "<eos>"
