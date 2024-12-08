@@ -17,3 +17,12 @@ class TokenizationConfig:
     pad_token: str
     sos_token: str
     eos_token: str
+
+@dataclass(frozen = True)
+class CustomDatasetConfig:
+    root_dir: Path
+    image_dir: Path
+    caption_file: Path
+    vocab: Path
+    save_file_path: Path
+    transform: bool

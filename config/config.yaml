@@ -10,3 +10,15 @@ tokenization:
   token_file: artifacts/tokenization/data
   caption_file: artifacts/data_ingestion/data/captions.txt
   tokenizer_type: "basic_english"
+  unk_token: "<unk>"
+  pad_token: "<pad>"
+  sos_token: "<sos>"
+  eos_token: "<eos>"
+
+
+custom_dataset:
+  root_dir: artifacts/custom_dataset
+  image_dir: artifacts/data_ingestion/data/Images
+  caption_file: artifacts/data_ingestion/data/captions.txt
+  vocab: artifacts/tokenization/data
+  save_file_path: artifacts/custom_dataset/data

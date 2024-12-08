@@ -1,7 +1,7 @@
 from CaptionAI import logger
-from CaptionAI.utils.dataset import FlickrDataset, generate_batch_captions
 from CaptionAI.pipeline.stage_01_data_ingestion import DataIngestionPipeline
 from CaptionAI.pipeline.stage_02_tokenization import TokenizerPipeline
+from CaptionAI.pipeline.stage_03_create_dataset import DataCreationPipeline
 
 STAGE_NAME = "Data Ingestion"
 try:
@@ -16,15 +16,21 @@ except Exception as e:
 
 STAGE_NAME = "Tokenization"
 try:
-    logger.info(f">>>>>>>> stage {STAGE_NAME} started.")
+    logger.info(f">>>>>>>> stage {STAGE_NAME} started. <<<<<<<<")
     obj = TokenizerPipeline()
     obj.main()
-    logger.info(f">>>>>>>> stage {STAGE_NAME} completed.")
+    logger.info(f">>>>>>>> stage {STAGE_NAME} completed. <<<<<<<<")
 
 except Exception as e:
     logger.exception(e)
     raise e
 
-STAGE_NAME = "Dataset Creation"
+STAGE_NAME = "Custom Dataset Creation"
 try:
-    
+    logger.info(f">>>>>>>> stage {STAGE_NAME} started. <<<<<<<<")
+    obj = DataCreationPipeline()
+    obj.main()
+    logger.info(f">>>>>>>> stage {STAGE_NAME} completed. <<<<<<<<")
+except Exception as e:
+    logger.exception(e)
+    raise(e)

@@ -66,7 +66,9 @@ class FlickrDataset(Dataset):
         if self.transform:
             image = self.transform(image)
 
-        caption_text_to_index = lambda x: [self.vocab.get(token, self.vocab["<unk>"]) for token in self.tokenizer(x)]
+        caption_text_to_index = lambda x: [self.vocab[token] for token in self.tokenizer(x)]
+
+        caption_vec = []
         caption_vec = [self.vocab["<sos>"]]
         caption_vec += caption_text_to_index(caption)
         caption_vec += [self.vocab["<eos>"]]

@@ -1,7 +1,8 @@
 from CaptionAI.constants import *
 from CaptionAI.utils.common import read_yaml, create_directories
 from CaptionAI.entity.config_entity import (DataIngestionConfig,
-                                            TokenizationConfig)
+                                            TokenizationConfig,
+                                            CustomDatasetConfig)
 
 class ConfigurationManager:
     def __init__(self,
@@ -40,3 +41,18 @@ class ConfigurationManager:
         )
 
         return tokenization_config
+    
+    def get_dataset_config(self):
+        config = self.config.custom_dataset
+        create_directories([config.root_dir])
+
+        dataset_config = CustomDatasetConfig(
+            root_dir = config.root_dir,
+            image_dir = config.image_dir,
+            caption_file = config.caption_file,
+            vocab = config.vocab,
+            save_file_path = config.save_file_path,
+            transform = False
+        )
+
+        return dataset_config
