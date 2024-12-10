@@ -1,1 +1,6 @@
-key: val
+model_params:
+  emb_size: 300
+  attn_size: 256
+  enc_hidden_size: 2048
+  dec_hidden_size: 512
+  learning_rate: 0.0003

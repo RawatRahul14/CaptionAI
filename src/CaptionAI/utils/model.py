@@ -76,7 +76,7 @@ class DecoderRNN(nn.Module):
 
         self.lstm_cell = nn.LSTMCell(embd_size + enc_hidden_state, dec_hidden_state, bias = True)
         self.fc = nn.Linear(dec_hidden_state, vocab_size)
-        self.drop_prob = drop_prob
+        self.drop_prob = nn.Dropout(drop_prob)
 
     def init_hidden_state(self, features):
         mean_features = torch.mean(features, dim = 1)
@@ -94,16 +94,16 @@ class DecoderRNN(nn.Module):
         batch_size = captions.size(0)
         num_features = features.size(1)
 
-        preds = torch.zeros(batch_size, seq_len, num_features).to(device)
+        preds = torch.zeros(batch_size, seq_len, self.vocab_size).to(device)
         attn_weights = torch.zeros(batch_size, seq_len, num_features).to(device)
 
-        for t in seq_len:
+        for t in range(seq_len):
 
             attn_weight, context = self.attention(features, h)
             lstm_input = torch.cat((embeds[:, t], context), dim = 1)
             h, c = self.lstm_cell(lstm_input, (h, c))
             output = self.fc(self.drop_prob(h))
-            preds[:, t] = output
+            preds[:, t, :] = output
             attn_weights[:, t] = attn_weight
 
         return preds, attn_weights
@@ -128,7 +128,7 @@ class DecoderRNN(nn.Module):
 
             h, c = self.lstm_cell(lstm_input, (h, c))
 
-            output = self.fcn(self.drop_prob(h))
+            output = self.fc(self.drop_prob(h))
             output = output.view(batch_size, -1)
 
             predicted_word_idx = output.argmax(dim = 1)

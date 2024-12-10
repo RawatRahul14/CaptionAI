@@ -2,7 +2,8 @@ from CaptionAI.constants import *
 from CaptionAI.utils.common import read_yaml, create_directories
 from CaptionAI.entity.config_entity import (DataIngestionConfig,
                                             TokenizationConfig,
-                                            CustomDatasetConfig)
+                                            CustomDatasetConfig,
+                                            ModelTrainerConfig)
 
 class ConfigurationManager:
     def __init__(self,
@@ -56,3 +57,22 @@ class ConfigurationManager:
         )
 
         return dataset_config
+    
+    def get_model_trainer_config(self):
+        config = self.config.model_trainer
+        params = self.params.model_params
+
+        create_directories([config.root_dir])
+
+        modeltrainer_config = ModelTrainerConfig(
+            root_dir = config.root_dir,
+            data_dir = config.data_dir,
+            token_dir = config.token_dir,
+            emb_size = params.emb_size,
+            attn_size = params.attn_size,
+            enc_hidden_size = params.enc_hidden_size,
+            dec_hidden_size = params.dec_hidden_size,
+            learning_rate = params.learning_rate
+        )
+
+        return modeltrainer_config

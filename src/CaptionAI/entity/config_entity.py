@@ -26,3 +26,14 @@ class CustomDatasetConfig:
     vocab: Path
     save_file_path: Path
     transform: bool
+
+@dataclass(frozen = True)
+class ModelTrainerConfig:
+    root_dir: Path
+    data_dir: Path
+    token_dir: Path
+    emb_size: int
+    attn_size: int
+    enc_hidden_size: int
+    dec_hidden_size: int
+    learning_rate: float

@@ -22,3 +22,8 @@ custom_dataset:
   caption_file: artifacts/data_ingestion/data/captions.txt
   vocab: artifacts/tokenization/data
   save_file_path: artifacts/custom_dataset/data
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  data_dir: artifacts/custom_dataset/data
+  token_dir: artifacts/tokenization/data
