@@ -118,7 +118,7 @@ def main():
     if uploaded_image is not None:
         # Display the uploaded image
         image = Image.open(uploaded_image)
-        st.image(image, caption = "Uploaded Image", use_container_width=True)
+        st.image(image, caption = "Uploaded Image", use_container_width = False)
         st.success("Image uploaded successfully!")
 
         # Generate and display the caption

@@ -81,7 +81,7 @@ class ModelTrain:
         with open(self.config.data_dir, "rb") as f:
             self.data_loader = pickle.load(f)
 
-    def train_model(self, num_epochs: int = 3, print_every: int = 100):
+    def train_model(self, num_epochs: int = 10, print_every: int = 100):
 
         logger.info("Model training has been started.")
         for epoch in range(num_epochs):
