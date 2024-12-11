@@ -78,7 +78,7 @@ def generate_captions(model, image, vocab, max_caption_length = 20):
 
 # Streamlit UI
 def load_model():
-    model_path = Path("artifacts\model_trainer\model_trainerattention_model_state.pth")
+    model_path = Path("artifacts/model_trainer/attention_model_state.pth")
     checkpoint = torch.load(model_path, map_location = torch.device('cpu'))
 
     emb_size = checkpoint["emb_size"]
